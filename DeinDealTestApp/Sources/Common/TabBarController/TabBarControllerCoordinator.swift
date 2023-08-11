@@ -32,7 +32,8 @@ final class TabBarControllerCoordinator: Coordinator<UITabBarController> {
         
     }
     
-    private func createNavController(title: String, imageName: String? = nil,
+    private func createNavController(title: String,
+                                     imageName: String? = nil,
                                      selectedImageName: String? = nil,
                                      systemImageName: String? = nil) -> UINavigationController {
         let navController = UINavigationController()

@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 
 enum HomeDealsControllerEvent {
     case homeDealsViewModel(HomeDealsViewModel.Event)
@@ -8,7 +9,9 @@ protocol HomeDealsInputBinding {
 }
 
 protocol HomeDealsOutputBinding {
-
+    var cities: AnyPublisher<[City], Never> { get }
+    
+    func fetchCities()
 }
 
 protocol HomeDealsViewModelDelegate: AnyObject {
@@ -22,7 +25,8 @@ final class HomeDealsModule {
     private weak var delegate: Delegate?
 
     var viewController: HomeDealsViewController {
-        let viewModel = HomeDealsViewModel()
+        let cityServices = CityServices()
+        let viewModel = HomeDealsViewModel(cityService: cityServices)
         viewModel.delegate = delegate
         return HomeDealsViewController(viewModel: viewModel)
     }

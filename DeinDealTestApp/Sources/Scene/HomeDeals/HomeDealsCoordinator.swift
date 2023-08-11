@@ -15,6 +15,18 @@ final class HomeDealsCoordinator: Coordinator<UINavigationController> {
         let module = HomeDealsModule(delegate: self)
         
         rootView.pushViewController(module.viewController, animated: false)
+        
+        // Customize the navigation bar appearance
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.backgroundColor = .white
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor(named: "main") ?? .magenta]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "main") ?? .magenta]
+        rootView.navigationBar.prefersLargeTitles = true
+        rootView.navigationBar.tintColor = .white
+        
+        rootView.navigationBar.standardAppearance = navBarAppearance
+        rootView.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
 }

@@ -16,6 +16,17 @@
 		2C925B202A859654008654D6 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B1F2A859654008654D6 /* AccountViewController.swift */; };
 		2C925B222A85967E008654D6 /* AccountModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B212A85967E008654D6 /* AccountModule.swift */; };
 		2C925B242A8596D2008654D6 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B232A8596D2008654D6 /* AccountViewModel.swift */; };
+		2C925B272A85AED0008654D6 /* CitiesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B262A85AED0008654D6 /* CitiesCollectionView.swift */; };
+		2C925B2A2A85AF1B008654D6 /* Reusable in Frameworks */ = {isa = PBXBuildFile; productRef = 2C925B292A85AF1B008654D6 /* Reusable */; };
+		2C925B2C2A85AF42008654D6 /* CitiesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B2B2A85AF42008654D6 /* CitiesCollectionViewCell.swift */; };
+		2C925B2E2A85B63E008654D6 /* UIView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B2D2A85B63E008654D6 /* UIView+Helper.swift */; };
+		2C925B312A85B960008654D6 /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B302A85B960008654D6 /* Cities.swift */; };
+		2C925B342A85B9B7008654D6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2C925B332A85B9B7008654D6 /* SDWebImage */; };
+		2C925B362A85BA74008654D6 /* CityServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B352A85BA74008654D6 /* CityServices.swift */; };
+		2C925B3D2A862CC2008654D6 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 2C925B3C2A862CC2008654D6 /* NVActivityIndicatorView */; };
+		2C925B3F2A862CC2008654D6 /* NVActivityIndicatorViewExtended in Frameworks */ = {isa = PBXBuildFile; productRef = 2C925B3E2A862CC2008654D6 /* NVActivityIndicatorViewExtended */; };
+		2C925B412A863531008654D6 /* LoaderIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B402A863531008654D6 /* LoaderIndicator.swift */; };
+		2C925B442A863BF9008654D6 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C925B432A863BF9008654D6 /* BannerView.swift */; };
 		2CBC18522A856EA000C48745 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC18512A856EA000C48745 /* AppDelegate.swift */; };
 		2CBC18542A856EA000C48745 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC18532A856EA000C48745 /* SceneDelegate.swift */; };
 		2CBC18562A856EA000C48745 /* HomeDealsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC18552A856EA000C48745 /* HomeDealsViewController.swift */; };
@@ -60,6 +71,13 @@
 		2C925B1F2A859654008654D6 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		2C925B212A85967E008654D6 /* AccountModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModule.swift; sourceTree = "<group>"; };
 		2C925B232A8596D2008654D6 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		2C925B262A85AED0008654D6 /* CitiesCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesCollectionView.swift; sourceTree = "<group>"; };
+		2C925B2B2A85AF42008654D6 /* CitiesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2C925B2D2A85B63E008654D6 /* UIView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helper.swift"; sourceTree = "<group>"; };
+		2C925B302A85B960008654D6 /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
+		2C925B352A85BA74008654D6 /* CityServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityServices.swift; sourceTree = "<group>"; };
+		2C925B402A863531008654D6 /* LoaderIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderIndicator.swift; sourceTree = "<group>"; };
+		2C925B432A863BF9008654D6 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		2CBC184E2A856EA000C48745 /* DeinDealTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeinDealTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CBC18512A856EA000C48745 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CBC18532A856EA000C48745 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +104,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C925B342A85B9B7008654D6 /* SDWebImage in Frameworks */,
+				2C925B3F2A862CC2008654D6 /* NVActivityIndicatorViewExtended in Frameworks */,
+				2C925B2A2A85AF1B008654D6 /* Reusable in Frameworks */,
+				2C925B3D2A862CC2008654D6 /* NVActivityIndicatorView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				2CBC188B2A857A2900C48745 /* AppViewController.swift */,
+				2C925B2D2A85B63E008654D6 /* UIView+Helper.swift */,
+				2C925B402A863531008654D6 /* LoaderIndicator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -134,6 +158,39 @@
 				2C925B232A8596D2008654D6 /* AccountViewModel.swift */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		2C925B252A85AE9C008654D6 /* CityView */ = {
+			isa = PBXGroup;
+			children = (
+				2C925B262A85AED0008654D6 /* CitiesCollectionView.swift */,
+				2C925B2B2A85AF42008654D6 /* CitiesCollectionViewCell.swift */,
+			);
+			path = CityView;
+			sourceTree = "<group>";
+		};
+		2C925B2F2A85B951008654D6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2C925B302A85B960008654D6 /* Cities.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2C925B372A85BA7D008654D6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2C925B352A85BA74008654D6 /* CityServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2C925B422A863BE5008654D6 /* ViewComponent */ = {
+			isa = PBXGroup;
+			children = (
+				2C925B432A863BF9008654D6 /* BannerView.swift */,
+			);
+			path = ViewComponent;
 			sourceTree = "<group>";
 		};
 		2CBC18452A856E9F00C48745 = {
@@ -217,6 +274,9 @@
 		2CBC18842A856FF700C48745 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				2C925B422A863BE5008654D6 /* ViewComponent */,
+				2C925B372A85BA7D008654D6 /* Services */,
+				2C925B2F2A85B951008654D6 /* Model */,
 				2CBC188A2A85792B00C48745 /* HomeDeals */,
 				2C925B132A858EC4008654D6 /* Orders */,
 				2C925B142A858EDA008654D6 /* Account */,
@@ -235,6 +295,7 @@
 		2CBC188A2A85792B00C48745 /* HomeDeals */ = {
 			isa = PBXGroup;
 			children = (
+				2C925B252A85AE9C008654D6 /* CityView */,
 				2CBC18912A857D2100C48745 /* HomeDealsCoordinator.swift */,
 				2CBC18552A856EA000C48745 /* HomeDealsViewController.swift */,
 				2CBC188F2A857BA600C48745 /* HomeDealsModule.swift */,
@@ -268,6 +329,12 @@
 			dependencies = (
 			);
 			name = DeinDealTestApp;
+			packageProductDependencies = (
+				2C925B292A85AF1B008654D6 /* Reusable */,
+				2C925B332A85B9B7008654D6 /* SDWebImage */,
+				2C925B3C2A862CC2008654D6 /* NVActivityIndicatorView */,
+				2C925B3E2A862CC2008654D6 /* NVActivityIndicatorViewExtended */,
+			);
 			productName = DeinDealTestApp;
 			productReference = 2CBC184E2A856EA000C48745 /* DeinDealTestApp.app */;
 			productType = "com.apple.product-type.application";
@@ -340,6 +407,11 @@
 				Base,
 			);
 			mainGroup = 2CBC18452A856E9F00C48745;
+			packageReferences = (
+				2C925B282A85AF1B008654D6 /* XCRemoteSwiftPackageReference "Reusable" */,
+				2C925B322A85B9B7008654D6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				2C925B3B2A862CC2008654D6 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+			);
 			productRefGroup = 2CBC184F2A856EA000C48745 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -383,6 +455,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CBC188C2A857A2900C48745 /* AppViewController.swift in Sources */,
+				2C925B412A863531008654D6 /* LoaderIndicator.swift in Sources */,
+				2C925B312A85B960008654D6 /* Cities.swift in Sources */,
 				2C925B182A858F51008654D6 /* OrdersModule.swift in Sources */,
 				2CBC18922A857D2100C48745 /* HomeDealsCoordinator.swift in Sources */,
 				2C925B112A858C15008654D6 /* TabBarController.swift in Sources */,
@@ -391,15 +465,20 @@
 				2C925B1A2A858FB0008654D6 /* OrdersViewModel.swift in Sources */,
 				2C925B1C2A858FE4008654D6 /* OrdersCoordinator.swift in Sources */,
 				2C925B202A859654008654D6 /* AccountViewController.swift in Sources */,
+				2C925B272A85AED0008654D6 /* CitiesCollectionView.swift in Sources */,
 				2CBC188E2A857A8D00C48745 /* HomeDealsViewModel.swift in Sources */,
 				2C925B242A8596D2008654D6 /* AccountViewModel.swift in Sources */,
 				2CBC18962A8582FD00C48745 /* TabBarControllerCoordinator.swift in Sources */,
 				2C925B222A85967E008654D6 /* AccountModule.swift in Sources */,
 				2CBC18902A857BA600C48745 /* HomeDealsModule.swift in Sources */,
+				2C925B2C2A85AF42008654D6 /* CitiesCollectionViewCell.swift in Sources */,
+				2C925B2E2A85B63E008654D6 /* UIView+Helper.swift in Sources */,
 				2C925B162A858F26008654D6 /* OrdersViewController.swift in Sources */,
 				2CBC18562A856EA000C48745 /* HomeDealsViewController.swift in Sources */,
+				2C925B362A85BA74008654D6 /* CityServices.swift in Sources */,
 				2CBC18892A8571A500C48745 /* Coordinator.swift in Sources */,
 				2CBC18522A856EA000C48745 /* AppDelegate.swift in Sources */,
+				2C925B442A863BF9008654D6 /* BannerView.swift in Sources */,
 				2CBC18542A856EA000C48745 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -732,6 +811,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2C925B282A85AF1B008654D6 /* XCRemoteSwiftPackageReference "Reusable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/Reusable.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		2C925B322A85B9B7008654D6 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
+		2C925B3B2A862CC2008654D6 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2C925B292A85AF1B008654D6 /* Reusable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C925B282A85AF1B008654D6 /* XCRemoteSwiftPackageReference "Reusable" */;
+			productName = Reusable;
+		};
+		2C925B332A85B9B7008654D6 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C925B322A85B9B7008654D6 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		2C925B3C2A862CC2008654D6 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C925B3B2A862CC2008654D6 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		2C925B3E2A862CC2008654D6 /* NVActivityIndicatorViewExtended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C925B3B2A862CC2008654D6 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorViewExtended;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2CBC18462A856E9F00C48745 /* Project object */;
 }
