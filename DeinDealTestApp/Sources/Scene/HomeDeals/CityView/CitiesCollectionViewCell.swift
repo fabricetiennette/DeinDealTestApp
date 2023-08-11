@@ -1,9 +1,7 @@
-import Foundation
-import Reusable
 import UIKit
 import SDWebImage
 
-public final class CitiesCollectionViewCell: UICollectionViewCell, Reusable {
+public final class CitiesCollectionViewCell: UICollectionViewCell {
     
     private lazy var cityImageView: UIImageView = {
         let imageView = UIImageView()
@@ -40,8 +38,11 @@ public final class CitiesCollectionViewCell: UICollectionViewCell, Reusable {
         style()
         
         cityLabel.text = city.channelInfo.title
-        if let imageUrl = URL(string: city.channelInfo.images.large) {
-            cityImageView.sd_setImage(with: imageUrl)
+        if let encodedString = city.channelInfo.images.large.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+           let imageUrl = URL(string: encodedString) {
+            cityImageView.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "placeholder"))
+        } else {
+            print("Failed to encode and create URL.")
         }
     }
     

@@ -1,6 +1,6 @@
 import UIKit
 
-public final class CitiesCollectionView: UICollectionView {
+public final class FilterCollectionView: UICollectionView {
     public init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -14,9 +14,9 @@ public final class CitiesCollectionView: UICollectionView {
     }
 }
 
-extension CitiesCollectionView {
+extension FilterCollectionView {
     private func setupCollectionView() {
-        self.register(CitiesCollectionViewCell.self, forCellWithReuseIdentifier: "CitiesCollectionViewCell")
+        self.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCollectionViewCell")
         self.accessibilityIdentifier = "CitiesCollectionView.collectionView"
     }
 }

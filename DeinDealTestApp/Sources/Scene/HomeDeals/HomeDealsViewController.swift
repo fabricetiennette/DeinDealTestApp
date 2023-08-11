@@ -29,6 +29,7 @@ public final class HomeDealsViewController: AppViewController<HomeDealsModule.Vi
     
     private lazy var bannerView: BannerView = {
         let bannerView = BannerView()
+        bannerView.isHidden = true
         bannerView.translatesAutoresizingMaskIntoConstraints = false
         return bannerView
     }()
@@ -67,7 +68,6 @@ public final class HomeDealsViewController: AppViewController<HomeDealsModule.Vi
     private let loader = LoaderIndicator()
     private var cancellables: Set<AnyCancellable> = []
     private var cities: [City] = []
-    private var hasAppliedAnimation = false
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,13 +97,12 @@ public final class HomeDealsViewController: AppViewController<HomeDealsModule.Vi
     
     private func configureView() {
         citieslabel.text = "Nearby cities:"
-        bannerView.isHidden = true
         bannerView.configureBanner(title: "Hungry? We deliver",
                                    description: "Tap here to select an address",
                                    icon: UIImage(named: "location_icon"))
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.showBannerWithSlideInAnimation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.bannerView.showBannerWithSlideInAnimation()
         }
         
         containerStackView.setCustomSpacing(0, after: bannerView)
@@ -127,15 +126,6 @@ public final class HomeDealsViewController: AppViewController<HomeDealsModule.Vi
         return imageView
     }
     
-    func showBannerWithSlideInAnimation() {
-        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
-            self.bannerView.isHidden = false
-            self.bannerView.transform = .identity
-        }
-        
-        animator.startAnimation()
-    }
-    
     private func setupConstraints() {
         view.addSubview(homeScrollView)
         homeScrollView.addSubview(containerStackView)
@@ -155,7 +145,7 @@ public final class HomeDealsViewController: AppViewController<HomeDealsModule.Vi
             containerStackView.widthAnchor.constraint(equalTo: homeScrollView.widthAnchor),
             
             citiesCollectionView.heightAnchor.constraint(equalToConstant: 120),
-            bannerView.heightAnchor.constraint(equalToConstant: 100),
+            bannerView.heightAnchor.constraint(equalToConstant: 80),
             
             labelContainerView.heightAnchor.constraint(equalToConstant: 40),
             citieslabel.bottomAnchor.constraint(equalTo: labelContainerView.bottomAnchor),
@@ -171,10 +161,17 @@ extension HomeDealsViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: CitiesCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CitiesCollectionViewCell", for: indexPath) as? CitiesCollectionViewCell else {
+            fatalError("Unexpected cell type")
+        }
         let city = cities[indexPath.row]
         cell.configureCell(with: city)
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.row < cities.count else { return }
+        viewModel.didTappedCity(with: cities[indexPath.row], cities: cities)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

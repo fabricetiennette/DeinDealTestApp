@@ -1,9 +1,9 @@
 import UIKit
 
-public final class CitiesCollectionView: UICollectionView {
+public final class CityItemCollectionView: UICollectionView {
     public init() {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         super.init(frame: .zero, collectionViewLayout: layout)
 
         setupCollectionView()
@@ -14,9 +14,10 @@ public final class CitiesCollectionView: UICollectionView {
     }
 }
 
-extension CitiesCollectionView {
+extension CityItemCollectionView {
     private func setupCollectionView() {
-        self.register(CitiesCollectionViewCell.self, forCellWithReuseIdentifier: "CitiesCollectionViewCell")
+        self.register(CityItemCollectionViewCell.self, forCellWithReuseIdentifier: "CityItemCollectionViewCell")
         self.accessibilityIdentifier = "CitiesCollectionView.collectionView"
     }
 }
+

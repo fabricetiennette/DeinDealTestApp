@@ -1,30 +1,21 @@
 {
   "pins" : [
     {
-      "identity" : "nvactivityindicatorview",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ninjaprox/NVActivityIndicatorView.git",
-      "state" : {
-        "revision" : "bcb52371f2259254bac6690f92bb474a61768c47",
-        "version" : "5.1.1"
-      }
-    },
-    {
-      "identity" : "reusable",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/AliSoftware/Reusable.git",
-      "state" : {
-        "revision" : "18674709421360e210c2ecd4e8e08b217d4ea61d",
-        "version" : "4.1.2"
-      }
-    },
-    {
       "identity" : "sdwebimage",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SDWebImage/SDWebImage.git",
       "state" : {
         "revision" : "633996a807442ec28df9d33b0f88ce57a0e2fdbf",
         "version" : "5.17.0"
+      }
+    },
+    {
+      "identity" : "sdwebimagesvgcoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSVGCoder.git",
+      "state" : {
+        "revision" : "950167445ab703740569869c8b7510efc9d09a26",
+        "version" : "1.7.0"
       }
     }
   ],

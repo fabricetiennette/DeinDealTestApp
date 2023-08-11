@@ -42,7 +42,7 @@ final class HomeDealsViewModelTests: XCTestCase {
         
         viewModel?.fetchCities()
         
-        try await fulfillment(of: [expectation], timeout: 5)
+       await fulfillment(of: [expectation], timeout: 5)
     }
 
 }
@@ -53,7 +53,8 @@ final class MockHeHomeDealsCoordinator: HomeDealsModule.Delegate {
         switch homeDealsController {
         case .homeDealsViewModel(let event):
             switch event {
-                default: break
+            case .city(let id):
+                print(id)
             }
         }
     }

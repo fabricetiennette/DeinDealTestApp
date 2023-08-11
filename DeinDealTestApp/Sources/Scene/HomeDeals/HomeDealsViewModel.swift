@@ -26,10 +26,14 @@ public final class HomeDealsViewModel: HomeDealsModule.ViewModel {
             }
         }
     }
+    
+    public func didTappedCity(with city: City, cities: [City]) {
+        self.delegate?.didFinish(homeDealsController: .homeDealsViewModel(.city(city, cities)))
+    }
 }
 
 extension HomeDealsViewModel {
     public enum Event {
-        
+        case city(City, [City])
     }
 }

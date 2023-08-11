@@ -2,7 +2,7 @@ import UIKit
 
 final class TabBarControllerCoordinator: Coordinator<UITabBarController> {
     
-    unowned var parentCoordinator: TabBarControllerCoordinator?
+    unowned var parentCoordinator: AppCoordinator?
     weak var delegate: CoordinatorDelegate?
     
     private lazy var homeDealsNavController = createNavController(title: "DeinDeal",

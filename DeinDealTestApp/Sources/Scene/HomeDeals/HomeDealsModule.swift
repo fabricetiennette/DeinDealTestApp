@@ -6,6 +6,7 @@ public enum HomeDealsControllerEvent {
 }
 
 public protocol HomeDealsInputBinding {
+    func didTappedCity(with city: City, cities: [City])
 }
 
 public protocol HomeDealsOutputBinding {
@@ -22,9 +23,9 @@ public final class HomeDealsModule {
     public typealias ViewModel = HomeDealsInputBinding & HomeDealsOutputBinding
     public typealias Delegate = HomeDealsViewModelDelegate
 
-    private weak var delegate: Delegate?
+    weak var delegate: Delegate?
 
-    public var viewController: HomeDealsViewController {
+    var viewController: HomeDealsViewController {
         let cityServices = CityServices()
         let viewModel = HomeDealsViewModel(cityService: cityServices, delegate: delegate)
         return HomeDealsViewController(viewModel: viewModel)

@@ -14,7 +14,7 @@ public class BannerView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
     }()
     
@@ -22,7 +22,7 @@ public class BannerView: UIView {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.numberOfLines = 0 
         return label
     }()
@@ -44,24 +44,20 @@ public class BannerView: UIView {
         addSubview(titleLabel)
         addSubview(descriptionLabel)
         
-        // Set up constraints for subviews
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            // Constraints for iconImageView (leading, centerY, fixed size)
             iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 60),
-            iconImageView.heightAnchor.constraint(equalToConstant: 60),
+            iconImageView.widthAnchor.constraint(equalToConstant: 50),
+            iconImageView.heightAnchor.constraint(equalToConstant: 50),
             
-            // Constraints for titleLabel (leading to iconImageView, trailing to trailingAnchor, top to topAnchor)
             titleLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             
-            // Constraints for descriptionLabel (leading to iconImageView, trailing to trailingAnchor, top to titleLabel's bottom)
             descriptionLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
@@ -73,5 +69,14 @@ public class BannerView: UIView {
         titleLabel.text = title
         descriptionLabel.text = description
         iconImageView.image = icon
+    }
+    
+    func showBannerWithSlideInAnimation() {
+        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut) {
+            self.isHidden = false
+            self.transform = .identity
+        }
+        
+        animator.startAnimation()
     }
 }
