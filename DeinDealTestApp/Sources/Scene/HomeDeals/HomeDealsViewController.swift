@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-final class HomeDealsViewController: AppViewController<HomeDealsModule.ViewModel> {
+public final class HomeDealsViewController: AppViewController<HomeDealsModule.ViewModel> {
     
     private lazy var homeScrollView: UIScrollView = {
         let view = UIScrollView()
@@ -69,7 +69,7 @@ final class HomeDealsViewController: AppViewController<HomeDealsModule.ViewModel
     private var cities: [City] = []
     private var hasAppliedAnimation = false
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "DeinDeal Restaurant"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -166,26 +166,26 @@ final class HomeDealsViewController: AppViewController<HomeDealsModule.ViewModel
 }
 
 extension HomeDealsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cities.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: CitiesCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         let city = cities[indexPath.row]
         cell.configureCell(with: city)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 175, height: 100)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     

@@ -9,6 +9,31 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>DeinDealTestAppTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2CBC184D2A856EA000C48745</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2CBC18632A856EA500C48745</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2CBC186D2A856EA500C48745</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>

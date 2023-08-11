@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "4E2FDE98-32EC-4767-BA03-B3226690095E",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:DeinDealTestApp.xcodeproj",
+        "identifier" : "2CBC18632A856EA500C48745",
+        "name" : "DeinDealTestAppTests"
+      }
+    }
+  ],
+  "version" : 1
+}

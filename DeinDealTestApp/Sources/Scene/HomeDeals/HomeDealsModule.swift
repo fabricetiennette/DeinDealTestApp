@@ -1,37 +1,36 @@
 import Foundation
 import Combine
 
-enum HomeDealsControllerEvent {
+public enum HomeDealsControllerEvent {
     case homeDealsViewModel(HomeDealsViewModel.Event)
 }
 
-protocol HomeDealsInputBinding {
+public protocol HomeDealsInputBinding {
 }
 
-protocol HomeDealsOutputBinding {
+public protocol HomeDealsOutputBinding {
     var cities: AnyPublisher<[City], Never> { get }
     
     func fetchCities()
 }
 
-protocol HomeDealsViewModelDelegate: AnyObject {
+public protocol HomeDealsViewModelDelegate: AnyObject {
     func didFinish(homeDealsController: HomeDealsControllerEvent)
 }
 
-final class HomeDealsModule {
-    typealias ViewModel = HomeDealsInputBinding & HomeDealsOutputBinding
-    typealias Delegate = HomeDealsViewModelDelegate
+public final class HomeDealsModule {
+    public typealias ViewModel = HomeDealsInputBinding & HomeDealsOutputBinding
+    public typealias Delegate = HomeDealsViewModelDelegate
 
     private weak var delegate: Delegate?
 
-    var viewController: HomeDealsViewController {
+    public var viewController: HomeDealsViewController {
         let cityServices = CityServices()
-        let viewModel = HomeDealsViewModel(cityService: cityServices)
-        viewModel.delegate = delegate
+        let viewModel = HomeDealsViewModel(cityService: cityServices, delegate: delegate)
         return HomeDealsViewController(viewModel: viewModel)
     }
 
-    init(delegate: Delegate?) {
+    public init(delegate: Delegate?) {
         self.delegate = delegate
     }
 }

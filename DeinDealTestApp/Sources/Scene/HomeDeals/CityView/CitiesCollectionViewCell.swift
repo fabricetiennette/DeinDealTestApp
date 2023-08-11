@@ -2,7 +2,6 @@ import Foundation
 import Reusable
 import UIKit
 import SDWebImage
-import Kingfisher
 
 public final class CitiesCollectionViewCell: UICollectionViewCell, Reusable {
     

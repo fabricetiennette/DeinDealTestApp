@@ -1,7 +1,7 @@
 import Combine
 import Foundation
 
-final class HomeDealsViewModel: HomeDealsModule.ViewModel {
+public final class HomeDealsViewModel: HomeDealsModule.ViewModel {
     weak var delegate: HomeDealsModule.Delegate?
     
     public var cities: AnyPublisher<[City], Never> {
@@ -11,8 +11,9 @@ final class HomeDealsViewModel: HomeDealsModule.ViewModel {
     private let citiesSubject = PassthroughSubject<[City], Never>()
     private var cityService: CityServicesDelegate
     
-    init(cityService: CityServicesDelegate) {
+    public init(cityService: CityServicesDelegate, delegate: HomeDealsModule.Delegate?) {
         self.cityService = cityService
+        self.delegate = delegate
     }
 
     public func fetchCities() {
@@ -21,13 +22,14 @@ final class HomeDealsViewModel: HomeDealsModule.ViewModel {
                 let result = try await cityService.fetchCitiesFromAPI()
                 citiesSubject.send(result.cities)
             } catch {
+                print("Failed to fetch cities with error: \(error)")
             }
         }
     }
 }
 
 extension HomeDealsViewModel {
-    enum Event {
+    public enum Event {
         
     }
 }
