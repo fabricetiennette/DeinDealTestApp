@@ -4,9 +4,13 @@ public struct CitiesResponse: Codable {
     let cities: [City]
 }
 
-public struct City: Codable {
+public struct City: Codable, Equatable {
     let id: String
     let channelInfo: ChannelInfo
+
+    public static func == (lhs: City, rhs: City) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 public struct ChannelInfo: Codable {

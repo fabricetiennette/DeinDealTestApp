@@ -61,27 +61,5 @@ public class LoaderIndicator: UIView {
     public func isAnimating() -> Bool {
         return indicator.isAnimating
     }
-
-    public func configureLoaderWithBackgroud(on view: UIView, controller: UIViewController) {
-        loaderBackgroundView = UIView()
-        loaderBackgroundView?.alpha = 0
-        loaderBackgroundView?.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        loaderBackgroundView?.accessibilityIdentifier = "loaderBackgroundView.\(controller)"
-        loaderBackgroundView?.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loaderBackgroundView ?? UIView())
-        loaderBackgroundView?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        loaderBackgroundView?.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 20).isActive = true
-        loaderBackgroundView?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        loaderBackgroundView?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        loaderBackgroundView?.fadeAnimationIn()
-        showCircleStroke(indicator: loaderBackgroundView ?? UIView())
-    }
-
-    public func removeBackground() {
-        loaderBackgroundView?.fadeAnimationOut(onCompletion: { _ in
-            self.loaderBackgroundView?.removeFromSuperview()
-            self.loaderBackgroundView = nil
-        })
-    }
 }
 

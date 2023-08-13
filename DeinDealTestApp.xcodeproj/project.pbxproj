@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3F79DD2A884EFA00CED784 /* CityViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F79DC2A884EFA00CED784 /* CityViewModelTests.swift */; };
+		2C3F79DF2A884F2900CED784 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3F79DE2A884F2900CED784 /* SDWebImageSVGCoder */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2C3F79E12A88504700CED784 /* MockCityServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3F79E02A88504700CED784 /* MockCityServices.swift */; };
 		2C4C30302A8675F70044633F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 2C4C302F2A8675F70044633F /* SDWebImage */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2C4C30332A867F870044633F /* CityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C30322A867F870044633F /* CityViewController.swift */; };
 		2C4C30352A867FB50044633F /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C30342A867FB50044633F /* CityViewModel.swift */; };
@@ -60,7 +63,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C4C302E2A86759E0044633F /* DeinDelTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeinDelTestPlan.xctestplan; sourceTree = "<group>"; };
+		2C3F79DC2A884EFA00CED784 /* CityViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModelTests.swift; sourceTree = "<group>"; };
+		2C3F79E02A88504700CED784 /* MockCityServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCityServices.swift; sourceTree = "<group>"; };
+		2C4C302E2A86759E0044633F /* DeinDealTestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeinDealTestPlan.xctestplan; sourceTree = "<group>"; };
 		2C4C30322A867F870044633F /* CityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewController.swift; sourceTree = "<group>"; };
 		2C4C30342A867FB50044633F /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
 		2C4C30362A867FC70044633F /* CityModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModule.swift; sourceTree = "<group>"; };
@@ -118,12 +123,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C4C30302A8675F70044633F /* SDWebImage in Frameworks */,
+				2C3F79DF2A884F2900CED784 /* SDWebImageSVGCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C3F79DB2A884EC300CED784 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				2C3F79DC2A884EFA00CED784 /* CityViewModelTests.swift */,
+			);
+			path = City;
+			sourceTree = "<group>";
+		};
+		2C3F79E22A88504C00CED784 /* MockCityServices */ = {
+			isa = PBXGroup;
+			children = (
+				2C3F79E02A88504700CED784 /* MockCityServices.swift */,
+			);
+			path = MockCityServices;
+			sourceTree = "<group>";
+		};
 		2C4C30312A8679C90044633F /* City */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,8 +288,10 @@
 		2CBC18672A856EA500C48745 /* DeinDealTestAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				2C4C302E2A86759E0044633F /* DeinDelTestPlan.xctestplan */,
+				2C4C302E2A86759E0044633F /* DeinDealTestPlan.xctestplan */,
+				2C3F79E22A88504C00CED784 /* MockCityServices */,
 				2C925B472A86666A008654D6 /* HomeDeals */,
+				2C3F79DB2A884EC300CED784 /* City */,
 			);
 			path = DeinDealTestAppTests;
 			sourceTree = "<group>";
@@ -387,6 +411,7 @@
 			name = DeinDealTestAppTests;
 			packageProductDependencies = (
 				2C4C302F2A8675F70044633F /* SDWebImage */,
+				2C3F79DE2A884F2900CED784 /* SDWebImageSVGCoder */,
 			);
 			productName = DeinDealTestAppTests;
 			productReference = 2CBC18642A856EA500C48745 /* DeinDealTestAppTests.xctest */;
@@ -500,6 +525,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C925B492A86669B008654D6 /* HomeDealsViewModelTests.swift in Sources */,
+				2C3F79DD2A884EFA00CED784 /* CityViewModelTests.swift in Sources */,
+				2C3F79E12A88504700CED784 /* MockCityServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,6 +812,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2C3F79DE2A884F2900CED784 /* SDWebImageSVGCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CAF79152A86D91800F2504F /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
+			productName = SDWebImageSVGCoder;
+		};
 		2C4C302F2A8675F70044633F /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2C925B322A85B9B7008654D6 /* XCRemoteSwiftPackageReference "SDWebImage" */;

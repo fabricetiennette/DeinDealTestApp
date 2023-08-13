@@ -7,12 +7,16 @@ public struct CityData: Codable {
     let facetCategories: [FacetCategory]
 }
 
-public struct CityItem: Codable {
+public struct CityItem: Codable, Equatable {
     let id: Int
     let title: String
     let subtitle: String
     let images: Image
     let myThemes: [String]
+    
+    public static func == (lhs: CityItem, rhs: CityItem) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 public struct Image: Codable {

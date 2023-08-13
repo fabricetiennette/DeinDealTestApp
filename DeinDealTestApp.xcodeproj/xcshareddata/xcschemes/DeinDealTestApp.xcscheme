@@ -43,7 +43,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:DeinDelTestPlan.xctestplan"
+            reference = "container:DeinDealTestAppTests/DeinDealTestPlan.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

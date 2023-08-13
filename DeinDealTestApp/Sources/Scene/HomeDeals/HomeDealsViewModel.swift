@@ -1,21 +1,26 @@
 import Combine
-import Foundation
 
 public final class HomeDealsViewModel: HomeDealsModule.ViewModel {
-    weak var delegate: HomeDealsModule.Delegate?
     
+    // MARK: - Public Properties
     public var cities: AnyPublisher<[City], Never> {
         return citiesSubject.eraseToAnyPublisher()
     }
     
+    // MARK: - Private Properties
     private let citiesSubject = PassthroughSubject<[City], Never>()
     private var cityService: CityServicesDelegate
     
+    // MARK: - Delegate
+    weak var delegate: HomeDealsModule.Delegate?
+    
+    // MARK: - Initialization
     public init(cityService: CityServicesDelegate, delegate: HomeDealsModule.Delegate?) {
         self.cityService = cityService
         self.delegate = delegate
     }
-
+    
+    // MARK: - Public Methods
     public func fetchCities() {
         Task {
             do {
@@ -28,12 +33,15 @@ public final class HomeDealsViewModel: HomeDealsModule.ViewModel {
     }
     
     public func didTappedCity(with city: City, cities: [City]) {
-        self.delegate?.didFinish(homeDealsController: .homeDealsViewModel(.city(city, cities)))
+        self.delegate?.didFinish(homeDealsController: .homeDealsViewModel(.city((city, cities))))
     }
 }
 
+// MARK: - Extensions
 extension HomeDealsViewModel {
+    public typealias CityEvent = (City, [City])
     public enum Event {
-        case city(City, [City])
+        case city(CityEvent)
     }
 }
+

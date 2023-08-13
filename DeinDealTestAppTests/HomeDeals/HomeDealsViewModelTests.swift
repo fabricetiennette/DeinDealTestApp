@@ -3,7 +3,7 @@ import Combine
 @testable import DeinDealTestApp
 
 final class HomeDealsViewModelTests: XCTestCase {
-
+    
     private var viewModel: HomeDealsModule.ViewModel?
     private var coordinator: MockHeHomeDealsCoordinator?
     private var cityServices: MockCityServices!
@@ -12,6 +12,7 @@ final class HomeDealsViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         cityServices = MockCityServices()
+        coordinator = MockHeHomeDealsCoordinator()
         viewModel = HomeDealsViewModel(cityService: cityServices, delegate: coordinator)
     }
     
@@ -20,7 +21,7 @@ final class HomeDealsViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testFetchCitiesSuccess() async throws {
+    func testFetchCitiesSuccess() async  {
         let image = Images(small: "smallURL", large: "largeURL")
         let channelInfo = ChannelInfo(title: "ChannelTitle", images: image)
         let city = City(id: "1", channelInfo: channelInfo)
@@ -42,33 +43,47 @@ final class HomeDealsViewModelTests: XCTestCase {
         
         viewModel?.fetchCities()
         
-       await fulfillment(of: [expectation], timeout: 5)
+        await fulfillment(of: [expectation], timeout: 5)
     }
-
+    
+    func testCityTapped() async {
+        
+        let image = Images(small: "smallURL", large: "largeURL")
+        let channelInfo = ChannelInfo(title: "ChannelTitle", images: image)
+        let city = City(id: "1", channelInfo: channelInfo)
+        let cities = [city]
+        
+        let expectation = XCTestExpectation(description: "Delegate method called")
+        
+        coordinator?.callback = {
+            expectation.fulfill()
+        }
+        
+        self.viewModel?.didTappedCity(with: city, cities: cities)
+        
+        await fulfillment(of: [expectation], timeout: 2)
+        
+        XCTAssertEqual(coordinator?.tappedCity?.id, "1")
+        XCTAssertEqual(coordinator?.cityList, cities)
+        expectation.fulfill()
+    }
+    
 }
 
-
 final class MockHeHomeDealsCoordinator: HomeDealsModule.Delegate {
+    var tappedCity: City?
+    var cityList: [City]?
+    var callback: (() -> Void)?
+    
     func didFinish(homeDealsController: HomeDealsControllerEvent) {
         switch homeDealsController {
         case .homeDealsViewModel(let event):
             switch event {
-            case .city(let id):
-                print(id)
+            case .city(let city, let cities):
+                tappedCity = city
+                cityList = cities
+                callback?()
             }
         }
-    }
-}
-
-
-final class MockCityServices: CityServicesDelegate {
-    var shouldReturnError: Bool = false
-    var citiesResponse: CitiesResponse!
-    
-    func fetchCitiesFromAPI() async throws -> CitiesResponse {
-        if shouldReturnError {
-            throw CityServices.NetworkError.failedToFetchData
-        }
-        return citiesResponse
     }
 }
