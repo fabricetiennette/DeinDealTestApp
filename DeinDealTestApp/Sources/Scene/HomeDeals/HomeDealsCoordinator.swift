@@ -12,10 +12,13 @@ final class HomeDealsCoordinator: Coordinator<UINavigationController> {
     }
     
     override func start() {
-        let module = HomeDealsModule(delegate: self)
+        let cityServices = CityServices()
+        let module = HomeDealsModule(cityService: cityServices, delegate: self)
         rootView.pushViewController(module.viewController, animated: false)
-        
-        // Customize the navigation bar appearance
+        configureNavigationBarAppearance()
+    }
+    
+    private func configureNavigationBarAppearance() {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.backgroundColor = .white
@@ -23,7 +26,6 @@ final class HomeDealsCoordinator: Coordinator<UINavigationController> {
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor(named: "main") ?? .magenta]
         rootView.navigationBar.prefersLargeTitles = true
         rootView.navigationBar.tintColor = UIColor(named: "main")
-        
         rootView.navigationBar.standardAppearance = navBarAppearance
         rootView.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
@@ -33,14 +35,20 @@ final class HomeDealsCoordinator: Coordinator<UINavigationController> {
     }
 }
 
+// MARK: - HomeDealsModule Delegate
+
 extension HomeDealsCoordinator: HomeDealsModule.Delegate {
     func didFinish(homeDealsController: HomeDealsControllerEvent) {
         var controller: UIViewController
         switch homeDealsController {
         case .homeDealsViewModel(let event):
             switch event {
-            case let .city(city, citiesAvailable):
-                let module = CityModule(city: city, citiesAvailable: citiesAvailable, delegate: self)
+            case let .city((city, citiesAvailable)):
+                let cityService = CityServices()
+                let module = CityModule(city: city,
+                                        citiesAvailable: citiesAvailable,
+                                        cityService: cityService,
+                                        delegate: self)
                 controller = module.viewController
 
             }
@@ -49,15 +57,8 @@ extension HomeDealsCoordinator: HomeDealsModule.Delegate {
     }
 }
 
+// MARK: - CityModule Delegate
+
 extension HomeDealsCoordinator: CityModule.Delegate {
-    func didFinish(cityController: CityControllerEvent) {
-        switch cityController {
-        case .cityViewModel(let event):
-            switch event {
-            default: break
-            }
-        }
-    }
-    
-    
+    func didFinish(cityController: CityControllerEvent) {}
 }

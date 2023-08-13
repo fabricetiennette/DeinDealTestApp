@@ -7,6 +7,7 @@ public class BannerView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -15,6 +16,7 @@ public class BannerView: UIView {
         label.textAlignment = .left
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -23,30 +25,27 @@ public class BannerView: UIView {
         label.textAlignment = .left
         label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 18)
-        label.numberOfLines = 0 
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupSubviews()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupSubviews()
+        setupConstraints()
     }
     
-    private func setupSubviews() {
+    private func setupConstraints() {
         backgroundColor = UIColor(named: "main")
         
         addSubview(iconImageView)
         addSubview(titleLabel)
         addSubview(descriptionLabel)
-        
-        iconImageView.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor),

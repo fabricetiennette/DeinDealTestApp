@@ -4,11 +4,9 @@ enum AccountControllerEvent {
     case accountViewModel(AccountViewModel.Event)
 }
 
-protocol AccountInputBinding {
-}
+protocol AccountInputBinding {}
 
-protocol AccountOutputBinding {
-}
+protocol AccountOutputBinding {}
 
 protocol AccountViewModelDelegate: AnyObject {
     func didFinish(accountController: AccountControllerEvent)
@@ -21,8 +19,7 @@ final class AccountModule {
     private weak var delegate: Delegate?
 
     var viewController: AccountViewController {
-        let viewModel = AccountViewModel()
-        viewModel.delegate = delegate
+        let viewModel = AccountViewModel(delegate: delegate)
         return AccountViewController(viewModel: viewModel)
     }
 

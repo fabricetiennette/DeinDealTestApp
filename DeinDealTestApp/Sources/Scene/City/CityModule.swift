@@ -28,9 +28,9 @@ public final class CityModule {
     private weak var delegate: Delegate?
     private var city: City
     private var citiesAvailable: [City]
+    private let cityService: CityServicesDelegate
 
     public var viewController: CityViewController {
-        let cityService = CityServices()
         let viewModel = CityViewModel(city: city,
                                       citiesAvailable: citiesAvailable,
                                       cityService: cityService,
@@ -38,9 +38,10 @@ public final class CityModule {
         return CityViewController(viewModel: viewModel)
     }
 
-    public init(city: City, citiesAvailable: [City], delegate: Delegate?) {
+    public init(city: City, citiesAvailable: [City], cityService: CityServicesDelegate, delegate: Delegate?) {
         self.city = city
         self.citiesAvailable = citiesAvailable
+        self.cityService = cityService
         self.delegate = delegate
     }
 }

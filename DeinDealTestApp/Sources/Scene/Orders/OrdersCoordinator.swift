@@ -13,20 +13,10 @@ public final class OrdersCoordinator: Coordinator<UINavigationController> {
     
     override public func start() {
         let module = OrdersModule(delegate: self)
-        
         rootView.pushViewController(module.viewController, animated: false)
     }
-    
 }
 
 extension OrdersCoordinator: OrdersModule.Delegate {
-    func didFinish(ordersController: OrdersControllerEvent) {
-        switch ordersController {
-        case .ordersViewModel(let event):
-            switch event {
-            default:
-                break
-            }
-        }
-    }
+    func didFinish(ordersController: OrdersControllerEvent) {}
 }

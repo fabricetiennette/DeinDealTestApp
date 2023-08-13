@@ -33,6 +33,7 @@ public class LoaderIndicator: UIView {
         indicator.color = UIColor(named: "main") ?? .magenta
     }
 
+    /// Displays a circular indicator on the specified view.
     public func showCircleStroke(indicator forView: UIView, frame: CGFloat = 60) {
         indicator.startAnimating()
 
@@ -53,13 +54,9 @@ public class LoaderIndicator: UIView {
         strokeContainerView.bringSubviewToFront(forView)
     }
 
+    /// Hides the circular indicator.
     public func hideCircleStroke() {
         indicator.stopAnimating()
         strokeContainerView.removeFromSuperview()
     }
-
-    public func isAnimating() -> Bool {
-        return indicator.isAnimating
-    }
 }
-

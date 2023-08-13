@@ -4,11 +4,9 @@ enum OrdersControllerEvent {
     case ordersViewModel(OrdersViewModel.Event)
 }
 
-protocol OrdersInputBinding {
-}
+protocol OrdersInputBinding {}
 
-protocol OrdersOutputBinding {
-}
+protocol OrdersOutputBinding {}
 
 protocol OrdersViewModelDelegate: AnyObject {
     func didFinish(ordersController: OrdersControllerEvent)
@@ -21,8 +19,7 @@ final class OrdersModule {
     private weak var delegate: Delegate?
 
     var viewController: OrdersViewController {
-        let viewModel = OrdersViewModel()
-        viewModel.delegate = delegate
+        let viewModel = OrdersViewModel(delegate: delegate)
         return OrdersViewController(viewModel: viewModel)
     }
 

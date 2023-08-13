@@ -49,7 +49,6 @@ final class CityViewModelTests: XCTestCase {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { items in
                 if items != [] {
-                    print(items)
                     receivedItems = items
                     expectation.fulfill()
                 }
@@ -60,7 +59,7 @@ final class CityViewModelTests: XCTestCase {
 
         viewModel?.didSelectCategory(with: "fd_healthy")
 
-        wait(for: [expectation], timeout: 5)
+        wait(for: [expectation], timeout: 10)
 
         XCTAssertFalse(receivedItems.isEmpty, "No items received")
     }

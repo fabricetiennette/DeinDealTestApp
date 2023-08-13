@@ -3,6 +3,8 @@ import Combine
 
 public final class CityViewController: AppViewController<CityModule.ViewModel> {
     
+    // MARK: - UI Components
+    
     private lazy var cityScrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsVerticalScrollIndicator = false
@@ -38,10 +40,7 @@ public final class CityViewController: AppViewController<CityModule.ViewModel> {
         let collectionView = FilterCollectionView()
         collectionView.backgroundColor = .white
         collectionView.isScrollEnabled = true
-        collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.accessibilityIdentifier = "filterCollectionView.CityViewController"
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -50,10 +49,7 @@ public final class CityViewController: AppViewController<CityModule.ViewModel> {
         let collectionView = CityItemCollectionView()
         collectionView.backgroundColor = .white
         collectionView.isScrollEnabled = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.accessibilityIdentifier = "cityItemCollectionView.CityViewController"
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -88,23 +84,28 @@ public final class CityViewController: AppViewController<CityModule.ViewModel> {
         pickerToolbar.translatesAutoresizingMaskIntoConstraints = false
         return pickerToolbar
     }()
+    
+    // MARK: - Properties
 
     private var cancellables: Set<AnyCancellable> = []
-    private var facetCategories: [FacetCategory] = []
-    private var cityItem: [CityItem] = []
     private var newSelectedCityId: String = ""
     private var currentDisplayedCityId: String = ""
     private var cityCollectionViewHeightConstraint: NSLayoutConstraint?
-    private var selectedIndexPath: IndexPath?
     private let loader = LoaderIndicator()
+    
+    private var cityItemCollectionViewManager: CityItemCollectionViewManager?
+    private var filterCollectionViewManager: FilterCollectionViewManager?
+    
+    // MARK: - Lifecycle Methods
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .clear
-        setupConstraints()
+        setupView()
         bindViewModel()
         configureBannerView(withTitle: title)
     }
+    
+    // MARK: - Gesture Handlers
     
     @objc private func handleBannerTap() {
         animatePickerView(alpha: 1, completion: nil)
@@ -117,6 +118,21 @@ public final class CityViewController: AppViewController<CityModule.ViewModel> {
         }
     }
     
+    // MARK: - UI Configuration Methods
+    
+    private func setupView() {
+        view.backgroundColor = .clear
+        cityItemCollectionViewManager = CityItemCollectionViewManager()
+        cityItemCollectionView.delegate = cityItemCollectionViewManager
+        cityItemCollectionView.dataSource = cityItemCollectionViewManager
+        
+        filterCollectionViewManager = FilterCollectionViewManager()
+        filterCollectionView.delegate = filterCollectionViewManager
+        filterCollectionView.dataSource = filterCollectionViewManager
+        
+        setupConstraints()
+    }
+    
     private func animatePickerView(alpha: CGFloat, completion: ((Bool) -> Void)?) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.6, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
@@ -127,10 +143,10 @@ public final class CityViewController: AppViewController<CityModule.ViewModel> {
     
     private func clearDataAndFetchCity() {
         loader.showCircleStroke(indicator: self.view)
-        facetCategories = []
-        cityItem = []
+        filterCollectionViewManager?.facetCategories = []
+        cityItemCollectionViewManager?.cityItems = []
         title = ""
-        selectedIndexPath = nil
+        filterCollectionViewManager?.selectedIndexPath = nil
         bannerView.isHidden = true
         filterCollectionView.reloadData()
         cityItemCollectionView.reloadData()
@@ -142,7 +158,7 @@ public final class CityViewController: AppViewController<CityModule.ViewModel> {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] items in
                 guard let self = self else { return }
-                self.cityItem = items
+                self.cityItemCollectionViewManager?.cityItems = items
                 self.configureCityCollectionViewConstraints()
                 self.cityItemCollectionView.reloadData()
             }
@@ -158,13 +174,14 @@ public final class CityViewController: AppViewController<CityModule.ViewModel> {
         
         loader.showCircleStroke(indicator: view)
         self.title = viewModel.city.channelInfo.title
+        filterCollectionViewManager?.viewModel = self.viewModel
     }
     
     private func updateUI(with city: CityData) {
         currentDisplayedCityId = city.id
         loader.hideCircleStroke()
-        facetCategories = city.facetCategories
-        cityItem = city.items
+        filterCollectionViewManager?.facetCategories = city.facetCategories
+        cityItemCollectionViewManager?.cityItems = city.items
         title = city.name
         configureBannerView(withTitle: title)
         configureView()
@@ -189,7 +206,7 @@ public final class CityViewController: AppViewController<CityModule.ViewModel> {
         if let constraint = cityCollectionViewHeightConstraint {
             NSLayoutConstraint.deactivate([constraint])
         }
-        cityCollectionViewHeightConstraint = cityItemCollectionView.heightAnchor.constraint(equalToConstant: ((UIScreen.main.bounds.width / 1.5) + 10) * CGFloat(cityItem.count))
+        cityCollectionViewHeightConstraint = cityItemCollectionView.heightAnchor.constraint(equalToConstant: ((UIScreen.main.bounds.width / 1.5) + 10) * CGFloat(cityItemCollectionViewManager?.cityItems.count ?? 0))
         cityCollectionViewHeightConstraint?.isActive = true
     }
     
@@ -236,75 +253,9 @@ public final class CityViewController: AppViewController<CityModule.ViewModel> {
             cityPickerView.bottomAnchor.constraint(equalTo: pickerContainerView.bottomAnchor)
         ])
     }
-    
-    private func createFilterCell(for indexPath: IndexPath, on collectionView: UICollectionView) -> FilterCollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCollectionViewCell", for: indexPath) as? FilterCollectionViewCell else {
-            fatalError("Unexpected cell type")
-        }
-        let category = facetCategories[indexPath.row]
-        cell.configureCell(with: category)
-        return cell
-    }
-
-    private func createCityItemCell(for indexPath: IndexPath, on collectionView: UICollectionView) -> CityItemCollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CityItemCollectionViewCell", for: indexPath) as? CityItemCollectionViewCell else {
-            fatalError("Unexpected cell type")
-        }
-        let item = cityItem[indexPath.row]
-        cell.configureCell(with: item)
-        return cell
-    }
 }
 
-extension CityViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == cityItemCollectionView ? cityItem.count : facetCategories.count
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView {
-        case filterCollectionView:
-            return createFilterCell(for: indexPath, on: collectionView)
-        case cityItemCollectionView:
-            return createCityItemCell(for: indexPath, on: collectionView)
-        default:
-            return UICollectionViewCell()
-        }
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == filterCollectionView {
-            guard indexPath.row < facetCategories.count else { return }
-            
-            if selectedIndexPath == indexPath {
-                collectionView.deselectItem(at: indexPath, animated: true)
-                viewModel.didSelectCategory(with: "all")
-                selectedIndexPath = nil
-            } else {
-                viewModel.didSelectCategory(with: facetCategories[indexPath.row].id)
-                selectedIndexPath = indexPath
-            }
-        }
-    }
-
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == cityItemCollectionView {
-            return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 1.5)
-        }
-        return CGSize(width: 72, height: 72)
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionView == cityItemCollectionView {
-            return UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
-        }
-        return UIEdgeInsets(top: 0, left: 20, bottom: 10, right: 20)
-    }
-}
+// MARK: - Picker View Delegates & Data Source
 
 extension CityViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {

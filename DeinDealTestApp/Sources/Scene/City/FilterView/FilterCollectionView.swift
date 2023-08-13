@@ -17,6 +17,6 @@ public final class FilterCollectionView: UICollectionView {
 extension FilterCollectionView {
     private func setupCollectionView() {
         self.register(FilterCollectionViewCell.self, forCellWithReuseIdentifier: "FilterCollectionViewCell")
-        self.accessibilityIdentifier = "CitiesCollectionView.collectionView"
+        self.accessibilityIdentifier = "FilterCollectionView.collectionView"
     }
 }

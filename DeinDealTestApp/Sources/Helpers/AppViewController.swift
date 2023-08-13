@@ -1,24 +1,25 @@
 import UIKit
 
-public protocol AppViewControllerProtocol {
-    associatedtype ViewModelGenericType
+/**
+ An abstract `UIViewController` class that requires an associated view model for initialization.
+ */
+open class AppViewController<U>: UIViewController {
 
-    init(viewModel: ViewModelGenericType)
-}
+    /// The associated view model for the view controller.
+    public var viewModel: U
 
-open class AppViewController<U>: UIViewController, AppViewControllerProtocol {
-    public typealias ViewModelGenericType = U
-    public var viewModel: ViewModelGenericType
-
+    /// Default initializer is unavailable. Use `init(viewModel:)` instead.
     convenience init() {
-        fatalError("init() has not been implemented")
+        fatalError("Use `init(viewModel:)` to initialize the view controller.")
     }
 
+    /// Storyboard-based initialization is unavailable. Use `init(viewModel:)` instead.
     public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("Storyboard-based initialization is not supported. Use `init(viewModel:)` instead.")
     }
 
-    public required init(viewModel: ViewModelGenericType) {
+    /// Initializes the view controller with a view model.
+    public required init(viewModel: U) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

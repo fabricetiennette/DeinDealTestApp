@@ -50,6 +50,8 @@
 		2CBC18902A857BA600C48745 /* HomeDealsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC188F2A857BA600C48745 /* HomeDealsModule.swift */; };
 		2CBC18922A857D2100C48745 /* HomeDealsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC18912A857D2100C48745 /* HomeDealsCoordinator.swift */; };
 		2CBC18962A8582FD00C48745 /* TabBarControllerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC18952A8582FD00C48745 /* TabBarControllerCoordinator.swift */; };
+		2CF23D122A891204002EC32F /* CityItemCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF23D112A891204002EC32F /* CityItemCollectionViewManager.swift */; };
+		2CF23D142A89153C002EC32F /* FilterCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF23D132A89153C002EC32F /* FilterCollectionViewManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		2CBC188F2A857BA600C48745 /* HomeDealsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDealsModule.swift; sourceTree = "<group>"; };
 		2CBC18912A857D2100C48745 /* HomeDealsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDealsCoordinator.swift; sourceTree = "<group>"; };
 		2CBC18952A8582FD00C48745 /* TabBarControllerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerCoordinator.swift; sourceTree = "<group>"; };
+		2CF23D112A891204002EC32F /* CityItemCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityItemCollectionViewManager.swift; sourceTree = "<group>"; };
+		2CF23D132A89153C002EC32F /* FilterCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,11 +153,12 @@
 		2C4C30312A8679C90044633F /* City */ = {
 			isa = PBXGroup;
 			children = (
-				2CAF79182A86DEA300F2504F /* CityItemView */,
-				2CAF79102A86C83700F2504F /* FilterView */,
 				2C4C30322A867F870044633F /* CityViewController.swift */,
 				2C4C30342A867FB50044633F /* CityViewModel.swift */,
 				2C4C30362A867FC70044633F /* CityModule.swift */,
+				2CF23D102A8911F5002EC32F /* Manager */,
+				2CAF79102A86C83700F2504F /* FilterView */,
+				2CAF79182A86DEA300F2504F /* CityItemView */,
 			);
 			path = City;
 			sourceTree = "<group>";
@@ -299,8 +304,10 @@
 		2CBC18812A856FA000C48745 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				2CBC18872A85719600C48745 /* Coordinator */,
 				2CBC18842A856FF700C48745 /* Scene */,
+				2C925B372A85BA7D008654D6 /* Services */,
+				2C925B2F2A85B951008654D6 /* Model */,
+				2C925B422A863BE5008654D6 /* ViewComponent */,
 				2CBC18832A856FE500C48745 /* Common */,
 				2C925B122A858DB1008654D6 /* Helpers */,
 			);
@@ -324,6 +331,7 @@
 				2CBC18532A856EA000C48745 /* SceneDelegate.swift */,
 				2CBC18852A85711500C48745 /* AppCoordinator.swift */,
 				2CBC18942A8582D800C48745 /* TabBarController */,
+				2CBC18872A85719600C48745 /* Coordinator */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -335,9 +343,6 @@
 				2C4C30312A8679C90044633F /* City */,
 				2C925B132A858EC4008654D6 /* Orders */,
 				2C925B142A858EDA008654D6 /* Account */,
-				2C925B372A85BA7D008654D6 /* Services */,
-				2C925B2F2A85B951008654D6 /* Model */,
-				2C925B422A863BE5008654D6 /* ViewComponent */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -369,6 +374,15 @@
 				2C925B102A858C15008654D6 /* TabBarController.swift */,
 			);
 			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		2CF23D102A8911F5002EC32F /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2CF23D112A891204002EC32F /* CityItemCollectionViewManager.swift */,
+				2CF23D132A89153C002EC32F /* FilterCollectionViewManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF23D142A89153C002EC32F /* FilterCollectionViewManager.swift in Sources */,
 				2CBC188C2A857A2900C48745 /* AppViewController.swift in Sources */,
 				2C925B412A863531008654D6 /* LoaderIndicator.swift in Sources */,
 				2C925B312A85B960008654D6 /* CitiesResponse.swift in Sources */,
@@ -508,6 +523,7 @@
 				2CBC18902A857BA600C48745 /* HomeDealsModule.swift in Sources */,
 				2C925B2C2A85AF42008654D6 /* CitiesCollectionViewCell.swift in Sources */,
 				2C4C30352A867FB50044633F /* CityViewModel.swift in Sources */,
+				2CF23D122A891204002EC32F /* CityItemCollectionViewManager.swift in Sources */,
 				2C925B2E2A85B63E008654D6 /* UIView+Helper.swift in Sources */,
 				2C925B162A858F26008654D6 /* OrdersViewController.swift in Sources */,
 				2CBC18562A856EA000C48745 /* HomeDealsViewController.swift in Sources */,
@@ -671,6 +687,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B27HT7JX8Q;
@@ -687,6 +704,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.fabricetiennette.DeinDealTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -698,6 +716,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B27HT7JX8Q;
@@ -714,6 +733,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.fabricetiennette.DeinDealTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

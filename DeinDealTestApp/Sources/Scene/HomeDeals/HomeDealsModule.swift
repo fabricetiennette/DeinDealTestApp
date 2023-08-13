@@ -24,14 +24,15 @@ public final class HomeDealsModule {
     public typealias Delegate = HomeDealsViewModelDelegate
 
     weak var delegate: Delegate?
+    private let cityService: CityServicesDelegate
 
     var viewController: HomeDealsViewController {
-        let cityServices = CityServices()
-        let viewModel = HomeDealsViewModel(cityService: cityServices, delegate: delegate)
+        let viewModel = HomeDealsViewModel(cityService: cityService, delegate: delegate)
         return HomeDealsViewController(viewModel: viewModel)
     }
 
-    public init(delegate: Delegate?) {
+    public init(cityService: CityServicesDelegate, delegate: Delegate?) {
+        self.cityService = cityService
         self.delegate = delegate
     }
 }

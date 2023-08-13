@@ -79,7 +79,7 @@ final class MockHeHomeDealsCoordinator: HomeDealsModule.Delegate {
         switch homeDealsController {
         case .homeDealsViewModel(let event):
             switch event {
-            case .city(let city, let cities):
+            case .city((let city, let cities)):
                 tappedCity = city
                 cityList = cities
                 callback?()

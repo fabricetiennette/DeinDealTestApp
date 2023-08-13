@@ -15,17 +15,8 @@ public final class AccountCoordinator: Coordinator<UINavigationController> {
         let module = AccountModule(delegate: self)
         rootView.pushViewController(module.viewController, animated: false)
     }
-    
 }
 
 extension AccountCoordinator: AccountModule.Delegate {
-    func didFinish(accountController: AccountControllerEvent) {
-        switch accountController {
-        case .accountViewModel(let event):
-            switch event {
-            default:
-                break
-            }
-        }
-    }
+    func didFinish(accountController: AccountControllerEvent) {}
 }
